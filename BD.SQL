@@ -40,9 +40,10 @@ CREATE TABLE [dbo].[Posibilidades](
 GO
 
 CREATE TABLE [dbo].[Riesgos](
-	[Id] [int] NOT NULL,
+	[Id] [int] NOT NULL PRIMARY KEY IDENTITY(1,1),
 	[Nombre] [varchar](256) NOT NULL,
 	[AfectaCosto] [bit] NOT NULL,
+	[ValorCosto] [decimal(12,2)] ,
 	[AfectaTiempo] [bit] NOT NULL,
 	[AfectaAlcance] [bit] NOT NULL,
 	[AfectaCalidad] [bit] NOT NULL,
@@ -50,9 +51,23 @@ CREATE TABLE [dbo].[Riesgos](
 	[IdImpacto] [int] NOT NULL,
  CONSTRAINT [PK_Riesgos] PRIMARY KEY CLUSTERED 
 (
-	[Id] ASC
+ [Id] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
+GO
+
+CREATE TABLE Activos (
+	Id int IDENTITY(1,1) PRIMARY KEY,
+	Nombre varchar(64),
+);
+GO
+CREATE TABLE RiesgosActivos(
+	Id int primary key identity(1,1),
+	IdRiesgo int,
+	IdActivo int,
+	constraint FK_RiesgosActivos_Riesgos foreign key (IdRiesgo) references Riesgos(Id),
+	constraint FK_RiesgosActivos_Activos foreign key (IdActivo) references Activos(Id)
+);
 GO
 
 SET IDENTITY_INSERT [dbo].[Impactos] ON 
@@ -73,6 +88,7 @@ INSERT [dbo].[NivelRiesgos] ([Id], [ValorMinimo], [ValorMaximo], [Descripcion], 
 	(5, 10, 12, N'Alto', N'Requiere Niveles de Supervisión'),
 	(6, 15, 25, N'Muy Alto', N'Requiere de Acciones Inmediatas')
 SET IDENTITY_INSERT [dbo].[NivelRiesgos] OFF
+GO
 
 
 SET IDENTITY_INSERT [dbo].[Posibilidades] ON 
@@ -85,6 +101,38 @@ INSERT [dbo].[Posibilidades] ([Id], [Nivel], [Puntaje], [Descripcion]) VALUES
 GO
 
 SET IDENTITY_INSERT [dbo].[Posibilidades] OFF
+GO
+
+
+
+SET IDENTITY_INSERT [dbo].[Riesgos] ON
+INSERT [dbo].[Riesgos] ([Id], [Nombre], [AfectaCosto], [AfectaTiempo], [AfectaAlcance], [AfectaCalidad], [IdProbabilidad], [IdImpacto], [ValorCosto]) VALUES (4, N'Perdida de información por un virus informático', 1, 0, 0, 1, 4, 3, NULL)
+SET IDENTITY_INSERT [dbo].[Riesgos] OFF
+GO
+
+
+SET IDENTITY_INSERT [dbo].[NivelRiesgos] ON
+INSERT [dbo].[NivelRiesgos] ([Id], [ValorMinimo], [ValorMaximo], [Descripcion], [AccionTomar]) VALUES (1, 1, 1, N'Muy Bajo', N'Requiere monitoreo ')
+INSERT [dbo].[NivelRiesgos] ([Id], [ValorMinimo], [ValorMaximo], [Descripcion], [AccionTomar]) VALUES (2, 2, 4, N'Bajo', N'Manejado por Procedimientos de Rutina')
+INSERT [dbo].[NivelRiesgos] ([Id], [ValorMinimo], [ValorMaximo], [Descripcion], [AccionTomar]) VALUES (4, 5, 9, N'Medio', N'Se Deben Especificar Niveles de Responsabilidad')
+INSERT [dbo].[NivelRiesgos] ([Id], [ValorMinimo], [ValorMaximo], [Descripcion], [AccionTomar]) VALUES (5, 10, 12, N'Alto', N'Requiere Niveles de Supervisión')
+INSERT [dbo].[NivelRiesgos] ([Id], [ValorMinimo], [ValorMaximo], [Descripcion], [AccionTomar]) VALUES (6, 15, 25, N'Muy Alto', N'Requiere de Acciones Inmediatas')
+SET IDENTITY_INSERT [dbo].[NivelRiesgos] OFF
+
+GO
+
+SET IDENTITY_INSERT [dbo].[Activos] ON
+INSERT [dbo].[Activos] ([Id], [Nombre]) VALUES (1, N'Servidor Web')
+INSERT [dbo].[Activos] ([Id], [Nombre]) VALUES (2, N'Servidor Dell Optiplexaklsdj9')
+SET IDENTITY_INSERT [dbo].[Activos] OFF
+GO
+
+SET IDENTITY_INSERT [dbo].[RiesgosActivos] ON
+INSERT [dbo].[RiesgosActivos] ([Id], [IdRiesgo], [IdActivo]) VALUES (6, 4, 1)
+SET IDENTITY_INSERT [dbo].[RiesgosActivos] OFF
+GO
+
+
  
 ALTER TABLE [dbo].[Riesgos]  WITH CHECK ADD  CONSTRAINT [FK_Riesgos_Impactos] FOREIGN KEY([IdImpacto])
 REFERENCES [dbo].[Impactos] ([Id])
@@ -102,3 +150,10 @@ GO
 
 ALTER TABLE Impactos
 	  add constraint UC_Puntaje UNIQUE (Puntaje)
+GO
+ALTER TABLE Posibilidades
+	  add constraint UC_Posibilidad UNIQUE (Puntaje)
+GO
+
+
+

@@ -1,16 +1,17 @@
-module.exports = function({Id,Nivel, Puntaje, Descripcion}) {
- let db= 'Posibilidades';
+module.exports = function({Id,ValorMaximo, ValorMinimo, Descripcion,AccionTomar}) {
+ let db= 'NivelRiesgos';
     return ({
-        Id,Nivel,Puntaje,Descripcion,
+        Id,ValorMaximo,ValorMinimo,Descripcion,AccionTomar,
         queryGet:`SELECT * FROM ${db};`,
         queryGetByID:`SELECT * FROM ${db} WHERE Id=@Id;`,
         queryInsert:`INSERT INTO ${db} 
             (Nivel,Puntaje,Descripcion) VALUES 
             (@Nivel,@Puntaje,@Descripcion)`,
         queryUpdate:`UPDATE ${db} SET 
-            Nivel=@Nivel,
-            Puntaje=@Puntaje,
-            Descripcion=@Descripcion
+            ValorMaximo=@ValorMaximo,
+            ValorMinimo=@ValorMinimo,
+            Descripcion=@Descripcion,
+            AccionTomar=@AccionTomar,
             WHERE Id=@Id`,
         queryDelete:`DELETE FROM ${db} WHERE Id=@Id`,
     })
