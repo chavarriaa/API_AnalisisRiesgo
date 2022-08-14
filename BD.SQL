@@ -47,7 +47,7 @@ CREATE TABLE [dbo].[Riesgos](
 	[AfectaTiempo] [bit] NOT NULL,
 	[AfectaAlcance] [bit] NOT NULL,
 	[AfectaCalidad] [bit] NOT NULL,
-	[IdProbabilidad] [int] NOT NULL,
+	[IdPosiblidad] [int] NOT NULL,
 	[IdImpacto] [int] NOT NULL,
  CONSTRAINT [PK_Riesgos] PRIMARY KEY CLUSTERED 
 (
@@ -106,7 +106,7 @@ GO
 
 
 SET IDENTITY_INSERT [dbo].[Riesgos] ON
-INSERT [dbo].[Riesgos] ([Id], [Nombre], [AfectaCosto], [AfectaTiempo], [AfectaAlcance], [AfectaCalidad], [IdProbabilidad], [IdImpacto], [ValorCosto]) VALUES (4, N'Perdida de información por un virus informático', 1, 0, 0, 1, 4, 3, NULL)
+INSERT [dbo].[Riesgos] ([Id], [Nombre], [AfectaCosto], [AfectaTiempo], [AfectaAlcance], [AfectaCalidad], [IdPosiblidad], [IdImpacto], [ValorCosto]) VALUES (4, N'Perdida de información por un virus informático', 1, 0, 0, 1, 4, 3, NULL)
 SET IDENTITY_INSERT [dbo].[Riesgos] OFF
 GO
 

@@ -16,5 +16,6 @@ module.exports = function({Id,Nivel, Puntaje, Descripcion}) {
             Descripcion=@Descripcion
             WHERE Id=@Id`,
         queryDelete:`DELETE FROM ${db} WHERE Id=@Id`,
+        queryGetForSelects:`SELECT Id 'value',Nivel 'label', Puntaje 'puntaje' FROM ${db}`,
     })
 }

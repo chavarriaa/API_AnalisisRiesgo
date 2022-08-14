@@ -20,6 +20,24 @@ router.get('/posibilidad', async(req,res)=>{
     }
 });
 
+router.get('/opciones/posibilidad', async(req,res)=>{
+    try {
+        let data = {...req.body,...req.params}
+
+        let posibilidad = PosibilidadModel(data,req.query);
+        let pool = await sql.connect(config);
+        let response = await pool.request()
+        .query(posibilidad.queryGetForSelects);
+        res.status(200).json(response.recordsets[0]);
+    } catch (e) {
+        console.error(e)
+        res.status(400).json(ResponseHandler.error(e));
+    }
+});
+
+
+
+
 router.get('/posibilidad/:Id', async(req,res)=>{
     try {
         let data = {...req.body,...req.params}

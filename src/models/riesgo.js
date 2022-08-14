@@ -1,7 +1,7 @@
-module.exports = function({Id,Nombre,AfectaCosto,ValorCosto,AfectaTiempo,AfectaAlcance,AfectaCalidad,IdProbabilidad,IdImpacto}) {
+module.exports = function({Id,Nombre,AfectaCosto,ValorCosto,AfectaTiempo,AfectaAlcance,AfectaCalidad,IdPosibilidad,IdImpacto}) {
  let db= 'Riesgos';
     return ({
-        Id,Nombre,AfectaCosto,ValorCosto,AfectaTiempo,AfectaAlcance,AfectaCalidad,IdProbabilidad,IdImpacto,
+        Id,Nombre,AfectaCosto,ValorCosto,AfectaTiempo,AfectaAlcance,AfectaCalidad,IdPosibilidad,IdImpacto,
         queryGet:`SELECT 
             R.Id,
             R.Nombre,
@@ -10,7 +10,7 @@ module.exports = function({Id,Nombre,AfectaCosto,ValorCosto,AfectaTiempo,AfectaA
             R.AfectaTiempo,
             R.AfectaAlcance,
             R.AfectaCalidad,
-            R.IdProbabilidad 'IdPosibilidad',
+            R.IdPosibilidad,
             P.Puntaje 'PuntajePosibilidad',
             P.Nivel 'NivelPosibilidad',
             R.IdImpacto,
@@ -21,7 +21,7 @@ module.exports = function({Id,Nombre,AfectaCosto,ValorCosto,AfectaTiempo,AfectaA
         INNER JOIN Impactos I
             ON R.IdImpacto = i.Id
         INNER JOIN Posibilidades P
-            ON R.IdProbabilidad = P.Id`,
+            ON R.IdPosibilidad = P.Id;`,
         queryGetByID:`SELECT 
             R.Id,
             R.Nombre,
@@ -30,7 +30,7 @@ module.exports = function({Id,Nombre,AfectaCosto,ValorCosto,AfectaTiempo,AfectaA
             R.AfectaTiempo,
             R.AfectaAlcance,
             R.AfectaCalidad,
-            R.IdProbabilidad,
+            R.IdPosibilidad,
             P.Puntaje,
             P.Nivel,
             R.IdImpacto,
@@ -41,11 +41,11 @@ module.exports = function({Id,Nombre,AfectaCosto,ValorCosto,AfectaTiempo,AfectaA
             INNER JOIN Impactos I
                 ON R.IdImpacto = i.Id
             INNER JOIN Posibilidades P
-                ON R.IdProbabilidad = P.Id Id=@Id
+                ON R.IdPosibilidad = P.Id Id=@Id
         where R.Id=@Id;`,
         queryInsert:`INSERT INTO ${db} 
-            (Nombre,AfectaCosto,ValorCosto,AfectaTiempo,AfectaAlcance,AfectaCalidad,IdProbabilidad,IdImpacto) VALUES 
-            (@Nombre,@AfectaCosto,@ValorCosto,@AfectaTiempo,@AfectaAlcance,@AfectaCalidad,@IdProbabilidad,@IdImpacto)`,
+            (Nombre,AfectaCosto,ValorCosto,AfectaTiempo,AfectaAlcance,AfectaCalidad,IdPosibilidad,IdImpacto) VALUES 
+            (@Nombre,@AfectaCosto,@ValorCosto,@AfectaTiempo,@AfectaAlcance,@AfectaCalidad,@IdPosibilidad,@IdImpacto)`,
         queryUpdate:`UPDATE ${db} SET 
             Nombre=@Nombre,
             AfectaCosto=@AfectaCosto,
@@ -53,7 +53,7 @@ module.exports = function({Id,Nombre,AfectaCosto,ValorCosto,AfectaTiempo,AfectaA
             AfectaTiempo=@AfectaTiempo,
             AfectaAlcance=@AfectaAlcance,
             AfectaCalidad=@AfectaCalidad,
-            IdProbabilidad=@IdProbabilidad,
+            IdPosibilidad=@IdPosibilidad,
             IdImpacto=@IdImpacto
             WHERE Id=@Id`,
         queryDelete:`DELETE FROM ${db} WHERE Id=@Id`,

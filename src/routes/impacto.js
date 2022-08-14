@@ -20,6 +20,22 @@ router.get('/impacto', async(req,res)=>{
     }
 });
 
+router.get('/opciones/impacto', async(req,res)=>{
+    try {
+        let data = {...req.body,...req.params}
+        let impacto = ImpactoModel(data,req.query);
+        let pool = await sql.connect(config);
+        let response = await pool.request()
+        .query(impacto.queryGetForSelects);
+        res.status(200).json(response.recordsets[0]);
+    } catch (e) {
+        console.error(e)
+        res.status(400).json(ResponseHandler.error(e));
+    }
+});
+
+
+
 router.get('/impacto/:Id', async(req,res)=>{
     try {
         let data = {...req.body,...req.params}
