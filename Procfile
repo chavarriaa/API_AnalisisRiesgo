@@ -1,1 +1,1 @@
-web: npm run cloud
+web: node index.js
