@@ -1,9 +1,9 @@
 
 module.exports = {
-    'user':process.env.user,
-    'password':process.env.password,
-    'server':process.env.server,
-    'database':process.env.database,
+    'user':process.env.USER,
+    'password':process.env.PASSWORD,
+    'server':process.env.SERVER,
+    'database':process.env.DATABASE,
     'options': {
         encrypt:false,
         trustServerCertificate: true

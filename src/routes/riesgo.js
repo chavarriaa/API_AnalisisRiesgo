@@ -64,10 +64,12 @@ router.put('/riesgo/:Id', async(req,res)=>{
         let data = {...req.body,...req.params}
         let riesgo = RiesgoModel(data,req.query);
         let pool = await sql.connect(config);
-
+console.log()
         let response = await pool.request()
+        .input('Id',sql.Int,riesgo.Id)
         .input('Nombre',sql.VarChar(256),riesgo.Nombre)
         .input('AfectaCosto',sql.Bit,riesgo.AfectaCosto)
+        .input('ValorCosto',sql.Decimal,riesgo.ValorCosto)
         .input('AfectaTiempo',sql.Bit,riesgo.AfectaTiempo)
         .input('AfectaAlcance',sql.Bit,riesgo.AfectaAlcance)
         .input('AfectaCalidad',sql.Bit,riesgo.AfectaCalidad)
