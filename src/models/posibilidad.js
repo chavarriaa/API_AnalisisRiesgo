@@ -1,5 +1,5 @@
 module.exports = function({Id,Nivel, Puntaje, Descripcion}) {
- let db= 'Impactos';
+ let db= 'Riesgos';
     return ({
         Id:Id,
         Nivel:Nivel,
