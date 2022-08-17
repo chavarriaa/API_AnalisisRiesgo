@@ -2,7 +2,7 @@ const express =require('express');
 const app = express();
 const cors = require('cors');
 
-app.set('port', process.env.port || 3333);
+app.set('port', process.env.PORT || 3333);
 app.set('json spaces',2);
 app.use(express.json());
 
