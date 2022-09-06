@@ -19,7 +19,11 @@ app.use('/', require('./src/routes/posibilidad'));
 app.use('/', require('./src/routes/riesgo'));
 app.use('/', require('./src/routes/activo'));
 app.use('/', require('./src/routes/riesgoActivo'));
-
+app.use('/', require('./src/routes/planSeguridad'));
+app.use('/', require('./src/routes/planAccion'));
+app.use('/', require('./src/routes/incidente'));
+app.use('/', require('./src/routes/planRespuesta'));
+app.use('/', require('./src/routes/PlanPoliticas'));
 app.listen(app.get('port'),(req,res)=>{
     console.log(`Escuchando puerto ${process.env.PORT}`);
 });
