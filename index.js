@@ -23,7 +23,8 @@ app.use('/', require('./src/routes/planSeguridad'));
 app.use('/', require('./src/routes/planAccion'));
 app.use('/', require('./src/routes/incidente'));
 app.use('/', require('./src/routes/planRespuesta'));
-app.use('/', require('./src/routes/PlanPoliticas'));
+app.use('/', require('./src/routes/PoliticaSeguridad'));
+app.use('/', require('./src/routes/RiesgoPoliticas'));
 app.listen(app.get('port'),(req,res)=>{
     console.log(`Escuchando puerto ${process.env.PORT}`);
 });
