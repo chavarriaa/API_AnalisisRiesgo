@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const sql = require('mssql');
 const config = require('../lib/config');
-const PlanAccionModel = require('../models/planAccion');
+const PlanAccionModel = require('../models/PlanAccion');
 const ResponseHandler = require('../lib/handlers');
 
 router.get('/plan-seguridad/:planSeguridad/plan-accion', async(req,res)=>{
