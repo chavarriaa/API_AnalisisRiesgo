@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const sql = require('mssql');
 const config = require('../lib/config');
-const NivelRiesgoModel = require('../models/nivelRiesgo');
+const NivelRiesgoModel = require('../models/NivelRiesgo');
 const ResponseHandler = require('../lib/handlers');
 
 router.get('/nivelRiesgo', async(req,res)=>{
