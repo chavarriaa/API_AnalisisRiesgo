@@ -26,9 +26,7 @@ router.post('/plan-seguridad/:PlanSeguridad/politicas/asociar',async(req,res)=>{
                 throw error;   
             }
         }
-
          let deletePlanPoliticas= await pool.query(`DELETE FROM PlanPoliticas WHERE PlanSeguridad = ${data.PlanSeguridad}`)
-
         Promise.all(
             data.politicas.map((item) => {
                 sendPlanPoliticas(item,data.PlanSeguridad)
