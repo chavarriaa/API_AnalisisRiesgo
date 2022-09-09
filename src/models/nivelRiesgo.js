@@ -1,5 +1,5 @@
 module.exports = function({Id,ValorMaximo, ValorMinimo, Descripcion,AccionTomar}) {
- let db= 'NivelRiesgos';
+ let db = 'NivelRiesgos';
     return ({
         Id,ValorMaximo,ValorMinimo,Descripcion,AccionTomar,
         queryGet:`SELECT * FROM ${db};`,

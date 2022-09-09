@@ -3,7 +3,7 @@ const router = express.Router();
 const sql = require('mssql');
 const config = require('../lib/config');
 const RiesgoAccionModel = require('../models/RiesgoPoliticas');
-const ResponseHandler = require('../lib/handlers');
+const ResponseHandler = require('../lib/handlers')
 
 router.post('/riesgo-seguridad/:Riesgo/politicas/asociar',async(req,res)=>{
         let data = {

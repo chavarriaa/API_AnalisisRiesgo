@@ -1,5 +1,5 @@
 module.exports = function({Id,Nombre}) {
- let db= 'Activos';
+ let db = 'Activos';
     return ({
         Id,Nombre,
         queryGet:`SELECT * FROM ${db};`,

@@ -38,7 +38,6 @@ router.get('/plan-seguridad/:planSeguridad/incidente/:Incidente/plan-respuesta/:
     }
 });
 
-
 router.post('/plan-seguridad/:planSeguridad/incidente/:Incidente/plan-respuesta', async(req,res)=>{
     try {
         let data = {...req.body,...req.params}

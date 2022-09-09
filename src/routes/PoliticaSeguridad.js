@@ -108,5 +108,4 @@ router.delete('/politica-seguridad/:Id', async(req,res)=>{
        res.status(400).json(ResponseHandler.error(e));
     }
 });
-
 module.exports = router;

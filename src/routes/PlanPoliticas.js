@@ -12,7 +12,6 @@ router.post('/plan-seguridad/:PlanSeguridad/politicas/asociar',async(req,res)=>{
             PlanSeguridad:req.params.PlanSeguridad
         }
         let PlanPoliticas = PlanAccionModel(data,req.query);
-
         let pool = await sql.connect(config);
 
         let sendPlanPoliticas= async (PoliticaSeguridad,PlanSeguridad)=>{

@@ -1,5 +1,5 @@
 module.exports = function({Id,Incidente, Fecha, Descripcion,Responsable}) {
-  let db= 'PlanRespuesta';
+  let db = 'PlanRespuesta';
      return ({
         Id,Incidente, Fecha,Descripcion,Responsable,
          queryGet:`SELECT * FROM ${db} where Incidente = @Incidente;`,

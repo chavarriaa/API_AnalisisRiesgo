@@ -8,7 +8,6 @@ const ResponseHandler = require('../lib/handlers');
 router.get('/posibilidad', async(req,res)=>{
     try {
         let data = {...req.body,...req.params}
-
         let posibilidad = PosibilidadModel(data,req.query);
         let pool = await sql.connect(config);
         let response = await pool.request()

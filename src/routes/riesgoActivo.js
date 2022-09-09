@@ -3,7 +3,7 @@ const router = express.Router();
 const sql = require('mssql');
 const config = require('../lib/config');
 const RiesgoActivoModel = require('../models/RiesgoActivo');
-const ResponseHandler = require('../lib/handlers');
+const ResponseHandler = require('../lib/handlers')
 
 router.get('/riesgo/:IdRiesgo/activo', async(req,res)=>{
     try {

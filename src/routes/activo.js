@@ -8,7 +8,6 @@ const ResponseHandler = require('../lib/handlers');
 router.get('/activo', async(req,res)=>{
     try {
         let data = {...req.body,...req.params}
-
         let activo = ActivoModel(data,req.query);
         let pool = await sql.connect(config);
         let response = await pool.request()

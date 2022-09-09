@@ -23,8 +23,8 @@ module.exports = function ({
     queryGet: `SELECT * FROM ${db};`,
     queryGetByID: `SELECT * FROM ${db} WHERE Id = @Id;`,
     queryInsert: `INSERT INTO ${db} 
-             (Identificador, Version, FechaCreado, FechaActualizado, CreadorPor, AutorizadoPor, Nombre, Descripcion) VALUES 
-             (@Identificador, @Version, @FechaCreado, @FechaActualizado, @CreadorPor, @AutorizadoPor, @Nombre, @Descripcion)`,
+        (Identificador, Version, FechaCreado, FechaActualizado, CreadorPor, AutorizadoPor, Nombre, Descripcion) VALUES 
+        (@Identificador, @Version, @FechaCreado, @FechaActualizado, @CreadorPor, @AutorizadoPor, @Nombre, @Descripcion)`,
     queryUpdate: `UPDATE ${db} SET 
         Identificador =@Identificador,
         Version = @Version,
