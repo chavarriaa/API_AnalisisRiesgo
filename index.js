@@ -20,9 +20,9 @@ app.use('/', require('./src/routes/riesgo'));
 app.use('/', require('./src/routes/activo'));
 app.use('/', require('./src/routes/riesgoActivo'));
 app.use('/', require('./src/routes/PlanSeguridad'));
-app.use('/', require('./src/routes/planAccion'));
+app.use('/', require('./src/routes/PlanAccion'));
 app.use('/', require('./src/routes/incidente'));
-app.use('/', require('./src/routes/planRespuesta'));
+app.use('/', require('./src/routes/PlanRespuesta'));
 app.use('/', require('./src/routes/PoliticaSeguridad'));
 app.use('/', require('./src/routes/RiesgoPoliticas'));
 app.listen(app.get('port'),(req,res)=>{
