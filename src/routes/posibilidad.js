@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const sql = require('mssql');
 const config = require('../lib/config');
-const PosibilidadModel = require('../models/Posibilidad');
+const PosibilidadModel = require('../models/posibilidad');
 const ResponseHandler = require('../lib/handlers');
 
 router.get('/posibilidad', async(req,res)=>{

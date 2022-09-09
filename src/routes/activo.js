@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const sql = require('mssql');
 const config = require('../lib/config');
-const ActivoModel = require('../models/Activo');
+const ActivoModel = require('../models/activo');
 const ResponseHandler = require('../lib/handlers');
 
 router.get('/activo', async(req,res)=>{

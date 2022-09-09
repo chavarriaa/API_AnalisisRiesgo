@@ -14,12 +14,12 @@ app.get('/', (req, res) => {
 });
 
 
-app.use('/', require('./src/routes/NivelRiesgo'));
-app.use('/', require('./src/routes/Impacto'));
-app.use('/', require('./src/routes/Posibilidad'));
-app.use('/', require('./src/routes/Riesgo'));
-app.use('/', require('./src/routes/Activo'));
-app.use('/', require('./src/routes/RiesgoActivo'));
+app.use('/', require('./src/routes/nivelRiesgo'));
+app.use('/', require('./src/routes/impacto'));
+app.use('/', require('./src/routes/posibilidad'));
+app.use('/', require('./src/routes/riesgo'));
+app.use('/', require('./src/routes/activo'));
+app.use('/', require('./src/routes/riesgoActivo'));
 app.use('/', require('./src/routes/PlanSeguridad'));
 app.use('/', require('./src/routes/PlanAccion'));
 app.use('/', require('./src/routes/Incidente'));
