@@ -13,7 +13,6 @@ app.get('/', (req, res) => {
     res.send('Hello World');
 });
 
-
 app.use('/', require('./src/routes/nivelRiesgo'));
 app.use('/', require('./src/routes/impacto'));
 app.use('/', require('./src/routes/posibilidad'));
@@ -26,6 +25,9 @@ app.use('/', require('./src/routes/Incidente'));
 app.use('/', require('./src/routes/PlanRespuesta'));
 app.use('/', require('./src/routes/PoliticaSeguridad'));
 app.use('/', require('./src/routes/RiesgoPoliticas'));
+app.use('/', require('./src/routes/PlanPoliticas'));
+
+
 
 app.listen(app.get('port'),(req,res)=>{
     console.log(`Escuchando puerto ${process.env.PORT}`);

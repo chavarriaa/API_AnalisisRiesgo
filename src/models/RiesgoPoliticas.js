@@ -4,11 +4,10 @@ module.exports = function ({ Id, Riesgo, PoliticaSeguridad }) {
     Id,
     Riesgo,
     PoliticaSeguridad,
-    queryGet: `SELECT * FROM ${db} WHERE Riesgo = @Riesgo;`,
-    queryGetByID: `SELECT * FROM ${db} WHERE Id = @Id AND Riesgo = @Riesgo;`,
+    queryGet: `SELECT Riesgo FROM ${db} WHERE PoliticaSeguridad = @PoliticaSeguridad;`,
+    queryGetByID: `SELECT Riesgo FROM ${db} WHERE PoliticaSeguridad = @PoliticaSeguridad;`,
     queryInsert: `INSERT INTO ${db} 
             (Riesgo, PoliticaSeguridad) VALUES 
-            (@Riesgo, @PoliticaSeguridad)`,
-    queryDelete: `DELETE FROM ${db} WHERE Riesgo = @Riesgo`,
+            (@Riesgo, @PoliticaSeguridad)`
   };
 };
