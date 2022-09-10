@@ -46,7 +46,6 @@ router.get('/politica-seguridad/:PoliticaSeguridad/riesgos', async(req,res)=>{
             .input('Id',sql.Int,RiesgoPoliticas.Id)
             .input('PoliticaSeguridad',sql.Int,RiesgoPoliticas.PoliticaSeguridad)
             .query(RiesgoPoliticas.queryGetByID);
-            console.log(response);
         res.status(200).json(response.recordsets[0].map(item=>item.Riesgo));
     } catch (e) {
         console.error(e)

@@ -2,7 +2,7 @@ module.exports = function({Id,planSeguridad, FechaInicio, FechaFin,Responsable,A
   let db = 'PlanAccion';
      return ({
       Id,planSeguridad, FechaInicio, FechaFin,Responsable,Auditor,Descripcion,
-         queryGet:`SELECT * FROM ${db} where planSeguridad = @planSeguridad;`,
+         queryGet:`SELECT * FROM ${db} where planSeguridad = @PlanSeguridad;`,
          queryGetByID:`SELECT * FROM ${db} WHERE Id=@Id AND  planSeguridad = @planSeguridad ;`,
          queryInsert:`INSERT INTO ${db} 
              (planSeguridad, FechaInicio, FechaFin,Responsable,Auditor,Descripcion) VALUES 

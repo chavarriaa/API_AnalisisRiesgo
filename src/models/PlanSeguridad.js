@@ -1,4 +1,4 @@
-module.exports = function({Id,Identificador, FechaInicio, FechaFin,CreadoPor,AutorizadoPor,Recursos,Descripcion}) {
+module.exports = function({Id='',Identificador='', FechaInicio='', FechaFin='',CreadoPor='',AutorizadoPor='',Recursos='',Descripcion=''}) {
   let db = 'PlanSeguridad';
      return ({
       Id,Identificador, FechaInicio, FechaFin,CreadoPor,AutorizadoPor,Recursos,Descripcion,

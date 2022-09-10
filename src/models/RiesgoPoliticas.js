@@ -5,7 +5,7 @@ module.exports = function ({ Id, Riesgo, PoliticaSeguridad }) {
     Riesgo,
     PoliticaSeguridad,
     queryGet: `SELECT Riesgo FROM ${db} WHERE PoliticaSeguridad = @PoliticaSeguridad;`,
-    queryGetByID: `SELECT Riesgo FROM ${db} WHERE PoliticaSeguridad = @PoliticaSeguridad;`,
+    queryGetByMultiple: (ids) => `SELECT Riesgo FROM ${db} WHERE PoliticaSeguridad IN (${ids});`,
     queryInsert: `INSERT INTO ${db} 
             (Riesgo, PoliticaSeguridad) VALUES 
             (@Riesgo, @PoliticaSeguridad)`

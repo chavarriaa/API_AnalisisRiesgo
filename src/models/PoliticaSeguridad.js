@@ -1,13 +1,13 @@
 module.exports = function ({
-  Id,
-  Identificador,
-  Version,
-  FechaCreado,
-  FechaActualizado,
-  CreadorPor,
-  AutorizadoPor,
-  Nombre,
-  Descripcion,
+  Id='',
+  Identificador='',
+  Version='',
+  FechaCreado='',
+  FechaActualizado='',
+  CreadorPor='',
+  AutorizadoPor='',
+  Nombre='',
+  Descripcion='',
 }) {
   let db = "PoliticaSeguridad";
   return {
@@ -21,6 +21,7 @@ module.exports = function ({
     Nombre,
     Descripcion,
     queryGet: `SELECT * FROM ${db};`,
+    queryGetMultiple: (ids) => `SELECT * FROM ${db} WHERE Id IN (${ids});`,
     queryGetByID: `SELECT * FROM ${db} WHERE Id = @Id;`,
     queryInsert: `INSERT INTO ${db} 
         (Identificador, Version, FechaCreado, FechaActualizado, CreadorPor, AutorizadoPor, Nombre, Descripcion) VALUES 

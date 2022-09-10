@@ -4,6 +4,7 @@ module.exports = function({Id,Incidente, Fecha, Descripcion,Responsable}) {
         Id,Incidente, Fecha,Descripcion,Responsable,
          queryGet:`SELECT * FROM ${db} where Incidente = @Incidente;`,
          queryGetByID:`SELECT * FROM ${db} WHERE Id=@Id AND Incidente = @Incidente ;`,
+         queryGetMultiple:(incidentes)=>`SELECT * FROM ${db} WHERE Incidente IN ( ${incidentes} );`,
          queryInsert:`INSERT INTO ${db} 
              (Incidente, Fecha,Descripcion,Responsable) VALUES 
              (@Incidente, @Fecha, @Descripcion, @Responsable)`,
@@ -12,7 +13,6 @@ module.exports = function({Id,Incidente, Fecha, Descripcion,Responsable}) {
             Fecha = @Fecha,
             Descripcion = @Descripcion,
             Responsable = @Responsable,
-
             ) VALUES 
             WHERE Id = @Id`,
          queryDelete:`DELETE FROM ${db} WHERE Id=@Id`,

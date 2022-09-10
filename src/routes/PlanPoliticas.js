@@ -47,7 +47,7 @@ router.get('/plan-seguridad/:PlanSeguridad/politicas', async(req,res)=>{
         let response = await pool.request()
         .input('Id',sql.Int,PlanPoliticas.Id)
         .input('PlanSeguridad',sql.Int,PlanPoliticas.PlanSeguridad)
-        .query(PlanPoliticas.queryGetByID);
+        .query(PlanPoliticas.queryGetBy);
 
         res.status(200).json(response.recordsets[0].map((item)=> item.PoliticaSeguridad));
     } catch (e) {
