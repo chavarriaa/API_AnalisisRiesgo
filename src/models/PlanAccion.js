@@ -13,7 +13,7 @@ module.exports = function({Id,planSeguridad, FechaInicio, FechaFin,Responsable,A
             FechaFin = @FechaFin,
             Responsable = @Responsable,
             Auditor = @Auditor,
-            Descripcion = @Descripcion) VALUES 
+            Descripcion = @Descripcion 
             WHERE Id = @Id`,
          queryDelete:`DELETE FROM ${db} WHERE Id=@Id`,
          queryGetForSelects:`SELECT Id 'value',Identificador 'label' FROM ${db}`,
