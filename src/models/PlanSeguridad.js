@@ -14,7 +14,7 @@ module.exports = function({Id='',Identificador='', FechaInicio='', FechaFin='',C
         CreadoPor = @CreadoPor,
         AutorizadoPor = @AutorizadoPor,
         Recursos = @Recursos,
-        Descripcion= @Descripcion) VALUES 
+        Descripcion= @Descripcion
         WHERE Id=@Id`,
          queryDelete:`DELETE FROM ${db} WHERE Id=@Id`,
          queryGetForSelects:`SELECT Id 'value',Identificador 'label' FROM ${db}`,
