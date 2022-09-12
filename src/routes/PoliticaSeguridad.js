@@ -51,6 +51,7 @@ router.get('/politica-seguridad/:Id', async(req,res)=>{
 router.post('/politica-seguridad', async(req,res)=>{
     try {
         let data = {...req.body,...req.params}
+
         let politicaSeguridad = PoliticaSeguridadModel(data,req.query);
         let pool = await sql.connect(config);
         let response = await pool.request()
@@ -63,7 +64,8 @@ router.post('/politica-seguridad', async(req,res)=>{
             .input('Nombre',sql.VarChar(100),politicaSeguridad.Nombre)
             .input('Descripcion',sql.NVarChar(sql.MAX),politicaSeguridad.Descripcion)
             .query(politicaSeguridad.queryInsert);
-        res.status(200).json([{...data}]);
+
+        res.status(200).json({...data,Id:response.recordset[0].ID});
     } catch (e) {
         console.error(e)
         res.status(400).json(ResponseHandler.error(e));

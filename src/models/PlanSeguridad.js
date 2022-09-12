@@ -5,7 +5,9 @@ module.exports = function({Id='',Identificador='', FechaInicio='', FechaFin='',C
          queryGet:`SELECT * FROM ${db};`,
          queryGetByID:`SELECT * FROM ${db} WHERE Id=@Id;`,
          queryInsert:`INSERT INTO ${db} 
-             (Identificador, FechaInicio, FechaFin,CreadoPor,AutorizadoPor,Recursos,Descripcion) VALUES 
+             (Identificador, FechaInicio, FechaFin,CreadoPor,AutorizadoPor,Recursos,Descripcion) 
+             OUTPUT.Inserted.Id
+             VALUES 
              (@Identificador, @FechaInicio, @FechaFin, @CreadoPor, @AutorizadoPor, @Recursos, @Descripcion)`,
          queryUpdate:`UPDATE ${db} SET 
          Identificador =@Identificador,

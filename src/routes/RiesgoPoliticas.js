@@ -8,7 +8,7 @@ const ResponseHandler = require('../lib/handlers')
 router.post('/politica-seguridad/:PoliticaSeguridad/riesgos/asociar',async(req,res)=>{
         let data = {
             riesgos: [...req.body],
-            Politica:req.params.PoliticaSeguridad
+            politica:req.params.PoliticaSeguridad
         }
         let RiesgoPoliticas = RiesgoAccionModel(data,req.query);
         let pool = await sql.connect(config);
@@ -20,21 +20,21 @@ router.post('/politica-seguridad/:PoliticaSeguridad/riesgos/asociar',async(req,r
                     .query(RiesgoPoliticas.queryInsert);
             } catch (error) {
                 console.log(`error en el Query ${PoliticaSeguridad,Riesgo}`);
-                throw error;   
+                throw error;
             }
         }
-        let deleteRiesgoPoliticas= await pool.query(`DELETE FROM RiesgoPoliticas WHERE Riesgo = ${data.Riesgo}`)
+        let deleteRiesgoPoliticas= await pool.query(`DELETE FROM RiesgoPoliticas WHERE PoliticaSeguridad = ${data.politica}`)
         Promise.all(
-            data.politicas.map((item) => {
-                sendRiesgoPoliticas(item,data.Riesgo)
-                .catch(err=>console.log(`Error ${err}`))
+            data.riesgos.map((item) => {
+                sendRiesgoPoliticas(data.politica,item)
+                .catch(err=>console.error(`Mira que hay un error ingresado el siguiente riesgo ${item} de la politica ${data.politica}`))
             })
         ).then((result) => {
                 console.log('completed');
                 res.status(200).json(data);
         }).catch((err) => {
             res.status(400).json(err);
-        });     
+        });
 });
 
 router.get('/politica-seguridad/:PoliticaSeguridad/riesgos', async(req,res)=>{
@@ -45,7 +45,7 @@ router.get('/politica-seguridad/:PoliticaSeguridad/riesgos', async(req,res)=>{
         let response = await pool.request()
             .input('Id',sql.Int,RiesgoPoliticas.Id)
             .input('PoliticaSeguridad',sql.Int,RiesgoPoliticas.PoliticaSeguridad)
-            .query(RiesgoPoliticas.queryGetByID);
+            .query(RiesgoPoliticas.queryGet);
         res.status(200).json(response.recordsets[0].map(item=>item.Riesgo));
     } catch (e) {
         console.error(e)

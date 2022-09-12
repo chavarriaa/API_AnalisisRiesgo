@@ -19,6 +19,21 @@ router.get('/riesgo', async(req,res)=>{
     }
 });
 
+router.get('/opciones/riesgo', async(req,res)=>{
+    try {
+        let data = {...req.body,...req.params}
+        let riesgo = RiesgoModel(data,req.query);
+        let pool = await sql.connect(config);
+        let response = await pool.request()
+        .query(riesgo.queryGetForSelects);
+        res.status(200).json(response.recordsets[0]);
+    } catch (e) {
+        console.error(e)
+        res.status(400).json(ResponseHandler.error(e));
+    }
+});
+
+
 router.get('/riesgo/:Id', async(req,res)=>{
     try {
         let data = {...req.body,...req.params}
@@ -48,6 +63,7 @@ router.post('/riesgo', async(req,res)=>{
         .input('AfectaTiempo',sql.Bit,riesgo.AfectaTiempo)
         .input('AfectaAlcance',sql.Bit,riesgo.AfectaAlcance)
         .input('AfectaCalidad',sql.Bit,riesgo.AfectaCalidad)
+        .input('Descripcion',sql.VarChar(200),riesgo.Descripcion)        
         .input('IdPosibilidad',sql.Int,riesgo.IdPosibilidad)
         .input('IdImpacto',sql.Int,riesgo.IdImpacto)
         .query(riesgo.queryInsert);
@@ -74,6 +90,7 @@ router.put('/riesgo/:Id', async(req,res)=>{
         .input('AfectaAlcance',sql.Bit,riesgo.AfectaAlcance)
         .input('AfectaCalidad',sql.Bit,riesgo.AfectaCalidad)
         .input('IdPosibilidad',sql.Int,riesgo.IdPosibilidad)
+        .input('Descripcion',sql.VarChar(200),riesgo.Descripcion)
         .input('IdImpacto',sql.Int,riesgo.IdImpacto)
         .query(riesgo.queryUpdate);
         res.status(200).json([{...data}]);

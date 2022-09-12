@@ -133,12 +133,12 @@ router.post('/plan-seguridad', async(req,res)=>{
         .input('Identificador',sql.VarChar(10),planSeguridad.Identificador)
         .input('FechaInicio',sql.Date,planSeguridad.FechaInicio)
         .input('FechaFin',sql.Date,planSeguridad.FechaFin)
-        .input('CreadoPor',sql.VarChar(20),planSeguridad.CreadoPor)
-        .input('AutorizadoPor',sql.VarChar(20),planSeguridad.AutorizadoPor)
+        .input('CreadoPor',sql.VarChar(40),planSeguridad.CreadoPor)
+        .input('AutorizadoPor',sql.VarChar(40),planSeguridad.AutorizadoPor)
         .input('Recursos',sql.VarChar,planSeguridad.Recursos)
         .input('Descripcion',sql.NVarChar(sql.MAX),planSeguridad.Descripcion)
         .query(planSeguridad.queryInsert);
-        res.status(200).json([{...data}]);
+        res.status(200).json({...data,Id:response.recordset[0].ID});
     } catch (e) {
         console.error(e)
         res.status(400).json(ResponseHandler.error(e));
@@ -155,8 +155,8 @@ router.put('/plan-seguridad/:Id', async(req,res)=>{
         .input('Identificador',sql.VarChar(10),planSeguridad.Identificador)
         .input('FechaInicio',sql.Date,planSeguridad.FechaInicio)
         .input('FechaFin',sql.Date,planSeguridad.FechaFin)
-        .input('CreadoPor',sql.VarChar(20),planSeguridad.CreadoPor)
-        .input('AutorizadoPor',sql.VarChar(20),planSeguridad.AutorizadoPor)
+        .input('CreadoPor',sql.VarChar(40),planSeguridad.CreadoPor)
+        .input('AutorizadoPor',sql.VarChar(40),planSeguridad.AutorizadoPor)
         .input('Recursos',sql.VarChar,planSeguridad.Recursos)
         .input('Descripcion',sql.NVarChar(sql.MAX),planSeguridad.Descripcion)
         .query(planSeguridad.queryUpdate);

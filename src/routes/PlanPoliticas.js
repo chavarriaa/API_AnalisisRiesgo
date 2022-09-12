@@ -21,7 +21,7 @@ router.post('/plan-seguridad/:PlanSeguridad/politicas/asociar',async(req,res)=>{
                 .input('PoliticaSeguridad', sql.Int, PoliticaSeguridad)
                 .query(PlanPoliticas.queryInsert);
             } catch (error) {
-                console.log(`error en el Query ${PoliticaSeguridad,PlanSeguridad}`);
+                console.error(`error en el Query ${PoliticaSeguridad,PlanSeguridad}`);
                 throw error;   
             }
         }
@@ -29,10 +29,10 @@ router.post('/plan-seguridad/:PlanSeguridad/politicas/asociar',async(req,res)=>{
         Promise.all(
             data.politicas.map((item) => {
                 sendPlanPoliticas(item,data.PlanSeguridad)
-                .catch(err=>console.log(`Error ${err}`))
+                .catch(err=>console.error(`Mira que hay un error al ingresar esta politica seguridad ${item}`))
             })
         ).then((result) => {
-                console.log('completed');
+                console.info('completed');
                 res.status(200).json(data);
         }).catch((err) => {
             res.status(400).json(err);
@@ -47,7 +47,7 @@ router.get('/plan-seguridad/:PlanSeguridad/politicas', async(req,res)=>{
         let response = await pool.request()
         .input('Id',sql.Int,PlanPoliticas.Id)
         .input('PlanSeguridad',sql.Int,PlanPoliticas.PlanSeguridad)
-        .query(PlanPoliticas.queryGetBy);
+        .query(PlanPoliticas.queryGet);
 
         res.status(200).json(response.recordsets[0].map((item)=> item.PoliticaSeguridad));
     } catch (e) {

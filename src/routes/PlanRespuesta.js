@@ -53,7 +53,7 @@ router.post('/plan-seguridad/:planSeguridad/incidente/:Incidente/plan-respuesta'
         .input('Descripcion',sql.VarChar,PlanRespuesta.Descripcion)
         .input('Responsable',sql.VarChar,PlanRespuesta.Responsable)
         .query(PlanRespuesta.queryInsert);
-        res.status(200).json([{...data}]);
+        res.status(200).json({...data});
     } catch (e) {
         console.error(e)
         res.status(400).json(ResponseHandler.error(e));
@@ -76,7 +76,7 @@ router.put('/plan-seguridad/:planSeguridad/incidente/:Incidente/plan-respuesta/:
         .input('Descripcion',sql.Varchar,PlanRespuesta.Descripcion)
         .input('Responsable',sql.Varchar,PlanRespuesta.Responsable)
         .query(PlanRespuesta.queryUpdate);
-        res.status(200).json([{...data}]);
+        res.status(200).json({...data});
     } catch (e) {
         console.error(e)
        res.status(400).json(ResponseHandler.error(e));
